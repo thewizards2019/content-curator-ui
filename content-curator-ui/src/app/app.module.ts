@@ -5,11 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedComponent } from './feed/feed.component';
+import { OptionsComponent } from './options/options.component';
+import { TrainComponent } from './train/train.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FeedComponent
+    FeedComponent,
+    OptionsComponent,
+    TrainComponent
   ],
   imports: [
     BrowserModule,
