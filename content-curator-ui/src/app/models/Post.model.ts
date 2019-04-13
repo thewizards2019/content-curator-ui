@@ -1,6 +1,6 @@
 export class Post {
 
-    constructor(id: number, content: string){
+    constructor(id: number, content: string, showMore: boolean){
         this.id = id;
         this.content = content;
     }

@@ -9,8 +9,7 @@ import { Post } from 'src/app/models/Post.model'
 })
 export class FeedComponent implements OnInit {
   feed: Post[];
-
-
+  
   constructor(private feedService: FeedService) { }
 
   ngOnInit() {

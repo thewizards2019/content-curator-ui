@@ -1,3 +1,18 @@
-<p>
-  train works!
-</p>
+<div class="container">
+    <div class="row" style="margin-top: 30px">
+        <div class="col-md-3 col-xs-6" *ngFor="let post of trainingFeed">
+            <div class="card">
+                <div class="card-body">
+                    <span class="card-body-content">
+                        <h5 class="card-title">{{ post.id }}</h5>
+                        <h5 class="card-title">{{ post.content }}</h5>
+                    </span>
+                    <span class="card-body-rank">
+                        <button mat-button (click)="rank(post.id, true)">See more</button>
+                        <button mat-button (click)="rank(post.id, false)">See less</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
