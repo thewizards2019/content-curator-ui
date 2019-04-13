@@ -11,6 +11,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { FeedComponent } from './feed/feed.component';
 import { TrainComponent } from './train/train.component';
 import { SettingsComponent } from './settings/settings.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { SettingsComponent } from './settings/settings.component'
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

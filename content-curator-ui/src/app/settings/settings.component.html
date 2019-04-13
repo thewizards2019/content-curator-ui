@@ -1,3 +1,19 @@
-<p>
-  settings works!
-</p>
+<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Sentiment:</label>
+    <mat-slider min="0" max="1" step="0.1" (input)="onSliderChange(value)" #matslider value="0.5"  formControlName="sentiment" [ngClass]="{ 'is-invalid': submitted && f.sentiment.errors }" ></mat-slider>
+    <span> {{ matslider.value }}</span>
+  </div>
+  <mat-divider></mat-divider>
+  <div>
+    <label>Show profanity:</label>
+    <mat-radio-group formControlName="profanity" aria-label="Show profanity?">
+        <mat-radio-button value=true>Yes</mat-radio-button>
+        <mat-radio-button value=false>No</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <mat-divider></mat-divider>
+  <div>
+      <button mat-button type="submit">Click me!</button>
+  </div>
+</form>
