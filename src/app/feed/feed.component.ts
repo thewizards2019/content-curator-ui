@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FeedService } from 'src/app/feed/feed.service'
-import { Post } from 'src/app/models/Post.model'
+// import { FeedService } from 'src/app/feed/feed.service'
+// import { Post } from 'src/app/models/Post.model'
 import { Observable } from 'rxjs';
+import { ApiService } from '../api/api.service';
 
 @Component({
   selector: 'app-feed',
@@ -9,18 +10,24 @@ import { Observable } from 'rxjs';
   styleUrls: ['./feed.component.scss']
 })
 export class FeedComponent implements OnInit {
-  feed: Post[];
-  
-  constructor(private feedService: FeedService) { }
+
+  results = [];
+
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    /*
-    const feedObservable = this.feedService.getFeed();
-    feedObservable.subscribe((feedData: Post[]) => {
-      this.feed = feedData
+    // lets do some mad processing in here, to filter out the values!
+    this.apiService.getAllData().subscribe((items: any) => this.filterResults(items));
+  }
+
+  filterResults(items) {
+    const userSettings = this.apiService.getUserSettings();
+    items.forEach(x => {
+      console.log(userSettings.profanityValue, userSettings.sentimentValue);
+      //  get this setting from the backend
+      if (x.PROFANITY === userSettings.profanityValue && userSettings.sentimentValue > parseFloat(x.SENTIMENT)) {
+        this.results.push(x);
+      }
     });
-    */
-   //this.feed = this.feedService.getFeed();
-   this.feedService.getFeed().subscribe(res => this.feed = res)
   }
 }

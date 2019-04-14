@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { ApiService } from '../api/api.service';
 
 @Component({
   selector: 'app-settings',
@@ -11,7 +12,7 @@ export class SettingsComponent implements OnInit {
   submitted = false;
   sentimentValue: number;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService) { }
 
   ngOnInit() {
     this.settingsForm = this.formBuilder.group({
@@ -19,23 +20,23 @@ export class SettingsComponent implements OnInit {
       profanity: ['', Validators.required]
     });
 
-    this.sentimentValue = 0.5;
+    this.sentimentValue = this.apiService.getUserSettings().sentimentValue;
   }
 
   get f() { return this.settingsForm.controls; }
 
   onSubmit() {
-    this.submitted = true;
+    // this.submitted = true;
 
-    if (this.settingsForm.invalid){
-      return;
-    }
-
-    alert('Cool beans.')
+    // if (this.settingsForm.invalid) {
+    //   return;
+    // }
+    this.apiService.setUserSettings('profanityValue', 'true');
+    alert('Cool beans.');
   }
 
-  onSliderChange(value:number){
-    this.sentimentValue = value
+  onSliderChange(value: number) {
+    this.sentimentValue = value;
   }
 
 }
