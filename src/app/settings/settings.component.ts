@@ -11,16 +11,18 @@ export class SettingsComponent implements OnInit {
   settingsForm: FormGroup;
   submitted = false;
   sentimentValue: number;
+  profanityValue: boolean;
 
   constructor(private formBuilder: FormBuilder, private apiService: ApiService) { }
 
   ngOnInit() {
     this.settingsForm = this.formBuilder.group({
-      sentiment: ['', Validators.required],
-      profanity: ['', Validators.required]
+      sentiment: [this.apiService.getUserSettings["sentimentValue"], Validators.required],
+      profanity: [this.apiService.getUserSettings["profanityValue"], Validators.required]
     });
 
     this.sentimentValue = this.apiService.getUserSettings().sentimentValue;
+    this.profanityValue = Boolean(this.apiService.getUserSettings().profanityValue);
   }
 
   get f() { return this.settingsForm.controls; }
@@ -31,8 +33,17 @@ export class SettingsComponent implements OnInit {
     // if (this.settingsForm.invalid) {
     //   return;
     // }
-    this.apiService.setUserSettings('profanityValue', 'true');
-    alert('Cool beans.');
+    console.log("Posted values: Profanity -> " + this.settingsForm.get("profanity").value + " | sentiment -> " + this.settingsForm.get("sentiment").value);
+
+    this.apiService.setUserSettings('profanityValue', this.settingsForm.get('profanity').value);
+    this.apiService.setUserSettings('sentimentValue', this.settingsForm.get('sentiment').value);
+
+    console.log("Set user settings: Profanity -> " + this.apiService.getUserSettings["sentimentValue"] + " | Sentiment -> " + this.apiService.getUserSettings["profanityValue"]);
+    //alert('Cool beans.');
+  }
+
+  slideChange(value: number) {
+    this.sentimentValue = value;
   }
 
   onSliderChange(value: number) {
