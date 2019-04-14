@@ -1,11 +1,12 @@
 <div class="container">
-    <div *ngFor="let post of feed">
-        <div class="mat-app-background basic-container">
-            <mat-card>
-                {{ post.uuid }} | {{ post.CONTENT }} | {{ post.SENTIMENT}}
-                <!--<h5 class="card-title">{{ post.id }}</h5>
+  <div *ngFor="let row of results">
+    <div class="mat-app-background basic-container">
+      <mat-card>
+        {{ row.CONTENT }}
+        <!-- | {{ row.SENTIMENT }} | {{ post.PROFANITY}} -->
+        <!--<h5 class="card-title">{{ post.id }}</h5>
                 <h5 class="card-title">{{ post.content }}</h5>-->
-            </mat-card>
-        </div>
+      </mat-card>
     </div>
+  </div>
 </div>
