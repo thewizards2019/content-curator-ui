@@ -35,11 +35,14 @@ export class SettingsComponent implements OnInit {
     // }
     console.log("Posted values: Profanity -> " + this.settingsForm.get("profanity").value + " | sentiment -> " + this.settingsForm.get("sentiment").value);
 
+    //sessionStorage.setItem('profanityValue', this.settingsForm.get('profanity').value);
+    //sessionStorage.setItem('sentimentValue', this.settingsForm.get(''))
     this.apiService.setUserSettings('profanityValue', this.settingsForm.get('profanity').value);
     this.apiService.setUserSettings('sentimentValue', this.settingsForm.get('sentiment').value);
 
-    console.log("Set user settings: Profanity -> " + this.apiService.getUserSettings["sentimentValue"] + " | Sentiment -> " + this.apiService.getUserSettings["profanityValue"]);
+    console.log("Set user settings: Profanity -> " + this.apiService.getUserSettings().sentimentValue + " | Sentiment -> " + this.apiService.getUserSettings().profanityValue);
     //alert('Cool beans.');
+
   }
 
   slideChange(value: number) {

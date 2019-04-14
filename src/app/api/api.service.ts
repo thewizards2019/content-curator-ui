@@ -9,10 +9,10 @@ import { TrainingPost } from '../models/TrainingPost.model';
   providedIn: 'root'
 })
 export class ApiService {
-  dataCuratorUri: string = 'http://127.0.0.1/'
-  feedUri: string = 'http://127.0.0.1:5000/feed/'
-  private allData: string = '/api/feed';
-  private tagDataUrl: string = '/api/tag/';
+  // dataCuratorUri: string = 'http://127.0.0.1/'
+  // feedUri: string = 'http://127.0.0.1:5000/feed/'
+  private allData: string = 'http://localhost:8080/all';
+  private tagDataUrl: string = 'http://localhost:5000/tag/';
 
   public userSettings = {
     sentimentValue: 0.5,
@@ -37,9 +37,15 @@ export class ApiService {
     return this.userSettings;
   }
 
-  tagData(UUID: number, showMore: boolean){
-    var urlToCall = this.tagDataUrl + UUID + "/" + showMore;
-    console.log("Calling..." + urlToCall)
+  tagData(UUID: string, showMore: boolean) {
+    let showValue = 0;
+    if (showMore === true) {
+      showValue = 1;
+    } else {
+      showValue = 0;
+    }
+
+    const urlToCall = this.tagDataUrl + UUID + '/' + showValue;
     this.httpClient.post(urlToCall, null)
       .subscribe();
   }
