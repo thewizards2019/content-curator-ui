@@ -11,7 +11,10 @@ export class Post {
         Object.assign(this, values);
     }
 
-    uuid: number;
+    UUID: string;
     CONTENT: string;
-    SENTIMENT: number;
+    SENTIMENT: string;
+    PROFANITY: string;
+    HIDE: boolean;
+    exclude: boolean;
 }

@@ -1,7 +1,7 @@
 <div class="container">
   <div *ngFor="let row of results">
     <div class="mat-app-background basic-container">
-      <mat-card>
+      <mat-card [ngClass]="setClass(row)">
         {{ row.CONTENT }}
         <!-- | {{ row.SENTIMENT }} | {{ post.PROFANITY}} -->
         <!--<h5 class="card-title">{{ post.id }}</h5>

@@ -1,14 +1,14 @@
 <div class="container">
   <div *ngFor="let row of results">
-    <div class="mat-app-background basic-container">
+    <div class="mat-app-background basic-container" *ngIf="!row.HIDE">
       <mat-card>
         <span class="card-body-content">
           <!-- <h5 class="card-title">{{ post.UUID }}</h5> -->
           <h5 class="card-title">{{ row.CONTENT }}</h5>
         </span>
         <span class="card-body-rank">
-          <button mat-button (click)="rank(post.id, true)">See more</button>
-          <button mat-button (click)="rank(post.id, false)">See less</button>
+          <button mat-button (click)="rank(row, true)">See more</button>
+          <button mat-button (click)="rank(row, false)">See less</button>
         </span>
       </mat-card>
     </div>

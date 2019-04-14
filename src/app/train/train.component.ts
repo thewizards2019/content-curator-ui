@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { TrainService } from 'src/app/train/train.service'
-// import { TrainingPost } from 'src/app/models/TrainingPost.model'
+import { Post } from 'src/app/models/Post.model'
 
 import { ApiService } from '../api/api.service';
 
@@ -11,12 +11,18 @@ import { ApiService } from '../api/api.service';
 })
 export class TrainComponent implements OnInit {
 
-  results = [];
+  results: Post[] = [];
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.apiService.getAllData().subscribe((items: any) => this.results = items);
+    this.apiService.getAllData().subscribe((items: Post[]) => this.results = items);
+  }
+
+  rank(post: Post, showMore: boolean){
+    this.apiService.tagData(Number(post.UUID), showMore);
+
+    post.HIDE = !showMore;
   }
 
   // rank(id: number, showMore: boolean){
