@@ -1,3 +1,9 @@
+# Install
+Run `make docker helm` to build the docker file and install the helm chart in minikube.
+
+
+
+-------------------------
 # ContentCuratorUi
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
